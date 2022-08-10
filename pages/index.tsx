@@ -1,10 +1,10 @@
-import { Button } from '@mui/material'
+import { Typography } from '@mui/material'
 import React from 'react'
 
 export default function Home() {
   return (
     <div>
-      <Button variant='contained'>Contained</Button>
+      <Typography sx={{ marginTop: '100px' }}>This is home page</Typography>
     </div>
   )
 }
