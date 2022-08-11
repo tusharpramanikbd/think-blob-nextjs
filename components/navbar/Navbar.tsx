@@ -57,13 +57,12 @@ const generateStyle = (matchesMD: boolean) => {
     },
     listStyle: {
       listStyleType: 'none',
-      display: 'flex',
+      display: !matchesMD ? 'flex' : 'none',
       alignItems: 'center',
       columnGap: '32px',
     },
     linkStyle: {
       color: 'black',
-      display: matchesMD ? 'none' : 'inherit',
       cursor: 'pointer',
       position: 'relative',
       '&::after': {
@@ -85,7 +84,6 @@ const generateStyle = (matchesMD: boolean) => {
     },
     activeLinkStyle: {
       color: '#B09A68',
-      display: matchesMD ? 'none' : 'inherit',
       cursor: 'pointer',
       position: 'relative',
       '&::after': {
@@ -151,12 +149,10 @@ const Navbar = (props: Props) => {
                       </Link>
                     </li>
                   ))}
-                  <li>
-                    <CustomInvisibleIconButton onClick={menuIconClickHandler}>
-                      <MenuIcon sx={classes.menuIconStyle} />
-                    </CustomInvisibleIconButton>
-                  </li>
                 </ul>
+                <CustomInvisibleIconButton onClick={menuIconClickHandler}>
+                  <MenuIcon sx={classes.menuIconStyle} />
+                </CustomInvisibleIconButton>
               </Box>
             </Container>
           </Toolbar>
