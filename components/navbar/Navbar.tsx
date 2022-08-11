@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import {
-  createTheme,
-  IconButton,
-  styled,
-  Theme,
-  useMediaQuery,
-} from '@mui/material'
+import { createTheme, IconButton, styled, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
 import MuiLink from '@mui/material/Link'
 import MenuIcon from '@mui/icons-material/Menu'
