@@ -16,6 +16,10 @@ import Link from 'next/link'
 import MuiLink from '@mui/material/Link'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useRouter } from 'next/router'
+import navbarItems from '../../data/navbarItems'
+import WebsiteLogo from '../WebsiteLogo/WebsiteLogo'
+import { useAppDispatch } from '../../app/reduxHooks'
+import { setIsLeftDrawerOpen } from '../../features/LeftDrawer/leftDrawerSlice'
 
 interface Props {
   children?: React.ReactElement
@@ -116,82 +120,39 @@ const Navbar = (props: Props) => {
   const theme = createTheme()
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
   const classes = generateStyle(matchesMD)
+  const dispatch = useAppDispatch()
+
+  const menuIconClickHandler = () => {
+    dispatch(setIsLeftDrawerOpen({ isLeftDrawerOpen: true }))
+  }
+
   return (
     <React.Fragment>
       <ElevationScroll {...props}>
         <AppBar sx={classes.rootContainerStyle}>
           <Toolbar>
             <Container sx={classes.containerStyle}>
-              <Typography variant='h6' component='span'>
-                <Typography
-                  variant='h6'
-                  component='span'
-                  sx={classes.logoStyle}
-                >
-                  THINK
-                </Typography>
-                BLOB
-              </Typography>
+              <WebsiteLogo />
               <Box>
                 <ul style={classes.listStyle}>
+                  {navbarItems.map((item) => (
+                    <li key={item.id}>
+                      <Link href={item.path}>
+                        <MuiLink
+                          sx={
+                            router.pathname == item.path
+                              ? [classes.linkStyle, classes.activeLinkStyle]
+                              : classes.linkStyle
+                          }
+                          underline='none'
+                        >
+                          {item.title}
+                        </MuiLink>
+                      </Link>
+                    </li>
+                  ))}
                   <li>
-                    <Link href='/'>
-                      <MuiLink
-                        sx={
-                          router.pathname == '/'
-                            ? [classes.linkStyle, classes.activeLinkStyle]
-                            : classes.linkStyle
-                        }
-                        underline='none'
-                      >
-                        Home
-                      </MuiLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href='/categories'>
-                      <MuiLink
-                        sx={
-                          router.pathname == '/categories'
-                            ? [classes.linkStyle, classes.activeLinkStyle]
-                            : classes.linkStyle
-                        }
-                        underline='none'
-                      >
-                        Categories
-                      </MuiLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href='/aboutUs'>
-                      <MuiLink
-                        sx={
-                          router.pathname == '/aboutUs'
-                            ? [classes.linkStyle, classes.activeLinkStyle]
-                            : classes.linkStyle
-                        }
-                        underline='none'
-                      >
-                        About Us
-                      </MuiLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href='/login'>
-                      <MuiLink
-                        sx={
-                          router.pathname == '/login'
-                            ? [classes.linkStyle, classes.activeLinkStyle]
-                            : classes.linkStyle
-                        }
-                        underline='none'
-                      >
-                        Login
-                      </MuiLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <CustomInvisibleIconButton>
+                    <CustomInvisibleIconButton onClick={menuIconClickHandler}>
                       <MenuIcon sx={classes.menuIconStyle} />
                     </CustomInvisibleIconButton>
                   </li>
