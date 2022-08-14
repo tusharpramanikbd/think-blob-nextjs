@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  Pagination,
   Typography,
   useMediaQuery,
   useTheme,
@@ -31,6 +32,12 @@ const generateStyle = (matchesSM: boolean) => {
         top: '0',
       },
     },
+    paginationContainerStyle: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: '32px',
+    },
   }
 }
 
@@ -46,6 +53,14 @@ const RecentBlogSection = () => {
         {blogPosts.map((item) => (
           <BlogItem key={item.id} />
         ))}
+        <Box sx={classes.paginationContainerStyle}>
+          <Pagination
+            count={10}
+            variant='outlined'
+            shape='rounded'
+            color='primary'
+          />
+        </Box>
       </Container>
     </Box>
   )
