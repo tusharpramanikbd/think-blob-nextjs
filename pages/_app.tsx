@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar/Navbar'
 import LeftDrawer from '../components/LeftDrawer/LeftDrawer'
 import store from '../app/store'
 import { Provider } from 'react-redux'
+import Footer from '../components/Footer/Footer'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -28,6 +29,7 @@ export default function MyApp(props) {
         <Provider store={store}>
           <Navbar />
           <Component {...pageProps} />
+          <Footer />
           <LeftDrawer />
         </Provider>
       </ThemeProvider>
